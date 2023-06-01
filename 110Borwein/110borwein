@@ -1,0 +1,35 @@
+#!/bin/env python3
+from sys import argv
+from midpoint import *
+from trapezoidal import *
+from simpson import *
+
+def helper() -> None:
+    print("USAGE:\n\t./110borwein n\n");
+    print("DESCRIPTION:\n\tn\tconstant defining the integral to be computed");
+
+def rigor(n) -> None:
+    try:
+        int(n)
+    except ValueError:
+        exit(84)
+    if int(n) < 0:
+        exit(84)
+
+def main() -> None:
+    argc = len(argv)
+
+    if argc != 2:
+        exit(84)
+    if argv[1] == "-h":
+        helper()
+        exit(0)
+    if argv[1].isalpha():
+        exit(84)
+    rigor(argv[1])
+    n = int(argv[1])
+    midpoint(n)
+    trapezoidal(n)
+    simpson(n)
+
+main()
